@@ -1,0 +1,35 @@
+{
+    "name": "ariadne",
+    "version": "0.1.0",
+    "description": "A (beta-version of a)[Neo4j](https://neo4j.com) based product suggestion engine.",
+    "keywords": [],
+    "author": "Ege Hatirnaz <egehatirnaz@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+      "build": "npm run dev:clean",
+      "start": "npm run dev",
+      "open:repo": "npm repo",
+
+      "dev": "npm run docker:start",
+      "dev:clean": "npm run docker:build",
+      "dev:stop": "npm run docker:stop",
+
+      "docker:build": "docker-compose rm -f && docker-compose up --remove-orphans --build --force-recreate --renew-anon-volumes",
+      "docker:start": "docker-compose up",
+      "docker:stop": "docker-compose down && docker system prune -f --volumes",
+      "docker:destroy": "docker-compose rm -f -s -v",
+
+      "docker:neo4j:build": "docker-compose up -d --force-recreate --no-deps --build neo4j",
+      "docker:neo4j:restart": "docker-compose restart neo4j",
+      "docker:neo4j:shell": "docker exec -ti ariadne bash",
+      "docker:neo4j:data": "docker exec -ti ariadne ls -al /var/lib/neo4j/data/"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/egehatirnaz/ariadne.git"
+    },
+    "bugs": {
+      "url": "https://github.com/egehatirnaz/ariadne/issues"
+    },
+    "homepage": "https://github.com/egehatirnaz/ariadne#readme"
+  }
